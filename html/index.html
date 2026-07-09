@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart-Barber | Reservá tu cita en línea</title>
+  <meta name="description" content="Smart-Barber: plataforma web de gestión de reservas para barberías y salones de belleza en Costa Rica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo-icon">✂</span> SMART<em>BARBER</em>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">¿Por qué Smart-Barber?</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="reservar.html">Reservar</a></li>
+      </ul>
+      <div class="nav-user" id="navUser"></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="container">
+      <span class="hero-badge">✂ Barbería &amp; Estudio · San José, Costa Rica</span>
+      <h1>Tu estilo, tu hora.<br>Reservá en línea <em>sin filas ni WhatsApp</em>.</h1>
+      <p class="lead">
+        Elegí tu servicio, tu barbero y el horario que mejor te calce.
+        Recibís confirmación y recordatorio automático 24 horas antes de tu cita.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="reservar.html">📅 Reservar cita</a>
+        <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b id="statServicios">—</b><span>Servicios disponibles</span></div>
+        <div class="stat"><b id="statBarberos">—</b><span>Barberos profesionales</span></div>
+        <div class="stat"><b>24 h</b><span>Recordatorio previo a tu cita</span></div>
+        <div class="stat"><b>100%</b><span>Reserva en línea</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SERVICIOS ================= -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <h2 class="section-title"><span class="line"></span>Nuestros servicios</h2>
+      <p class="section-sub">Precios en colones. La duración indicada bloquea tu espacio en la agenda: nadie más puede reservar sobre tu cita.</p>
+      <div class="services-list" id="listaServicios"></div>
+    </div>
+  </section>
+
+  <!-- ================= POR QUÉ ================= -->
+  <section class="section" id="nosotros" style="background: var(--surface); border-block: 1px solid var(--border);">
+    <div class="container">
+      <h2 class="section-title"><span class="line"></span>¿Por qué Smart-Barber?</h2>
+      <p class="section-sub">Digitalizamos el ciclo completo de tu cita, de la reserva a la silla.</p>
+      <div class="grid features-grid">
+        <div class="card">
+          <div class="feature-icon">🕑</div>
+          <h3>Disponibilidad real</h3>
+          <p class="muted small">Ves la agenda en tiempo real. El sistema valida los horarios: dos clientes nunca pueden reservar el mismo espacio.</p>
+        </div>
+        <div class="card">
+          <div class="feature-icon">🔔</div>
+          <h3>Recordatorios automáticos</h3>
+          <p class="muted small">Confirmación inmediata por correo/SMS y recordatorio 24 horas antes para que no se te pase la cita.</p>
+        </div>
+        <div class="card">
+          <div class="feature-icon">💈</div>
+          <h3>Elegí a tu barbero</h3>
+          <p class="muted small">Reservá con tu barbero de confianza o dejá que el sistema te asigne el primero disponible.</p>
+        </div>
+        <div class="card">
+          <div class="feature-icon">📋</div>
+          <h3>Tu historial siempre a mano</h3>
+          <p class="muted small">Consultá tus citas anteriores, reprogramá o cancelá con un clic y liberá el espacio para otra persona.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HORARIO ================= -->
+  <section class="section" id="horario">
+    <div class="container">
+      <h2 class="section-title"><span class="line"></span>Horario de atención</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="card">
+          <h3>🗓 Días y horas</h3>
+          <p class="muted" id="textoHorario">—</p>
+          <p class="muted small mt-1" id="textoCerrado"></p>
+        </div>
+        <div class="card">
+          <h3>📍 Ubicación</h3>
+          <p class="muted">San José, Costa Rica<br>Barrio Escalante, 200 m este del parque.</p>
+        </div>
+        <div class="card">
+          <h3>📞 Contacto</h3>
+          <p class="muted">Tel: 2222-0000<br>info@smartbarber.cr</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 Smart-Barber · Proyecto Ambiente Web Cliente/Servidor · Universidad Fidélitas · Grupo #4</span>
+      <span><a href="login.html">Acceso administrador</a></span>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
