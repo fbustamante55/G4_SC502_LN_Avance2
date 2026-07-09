@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar cita | Smart-Barber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo-icon">✂</span> SMART<em>BARBER</em>
+      </a>
+      <div class="nav-user" id="navUser"></div>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="tabs">
+        <button id="tabNueva" class="active" type="button">📅 Nueva reserva</button>
+        <button id="tabMisCitas" type="button">🗂 Mis citas</button>
+      </div>
+
+      <!-- ================= NUEVA RESERVA (WIZARD) ================= -->
+      <section id="vistaNueva">
+        <h1 class="section-title" id="tituloWizard">Reservá tu cita</h1>
+        <p class="muted" id="subtituloWizard">Cuatro pasos y listo. Solo se muestran horarios realmente disponibles.</p>
+
+        <div class="steps-bar">
+          <div class="step-item" data-n="1" data-paso="1">Servicio</div>
+          <div class="step-item" data-n="2" data-paso="2">Barbero</div>
+          <div class="step-item" data-n="3" data-paso="3">Fecha y hora</div>
+          <div class="step-item" data-n="4" data-paso="4">Confirmar</div>
+        </div>
+
+        <!-- Paso 1: servicios (se pueden combinar compatibles) -->
+        <div id="paso1" class="paso">
+          <p class="muted mb-2" id="resumenServicios"></p>
+          <div class="option-grid" id="gridServicios"></div>
+        </div>
+
+        <!-- Paso 2: barbero -->
+        <div id="paso2" class="paso hidden">
+          <div class="option-grid" id="gridBarberos"></div>
+        </div>
+
+        <!-- Paso 3: fecha y hora -->
+        <div id="paso3" class="paso hidden">
+          <h3 class="mb-2">Elegí el día</h3>
+          <div class="date-strip" id="stripFechas"></div>
+          <h3 class="mt-3 mb-2">Elegí la hora</h3>
+          <div class="slots-grid" id="gridSlots"></div>
+          <div class="slot-legend">
+            <span><span class="dot" style="background: var(--card); border: 2px solid var(--border);"></span>Disponible</span>
+            <span><span class="dot" style="background: var(--gold);"></span>Seleccionado</span>
+            <span><span class="dot" style="background: var(--surface); border: 2px solid var(--border);"></span>Ocupado</span>
+          </div>
+        </div>
+
+        <!-- Paso 4: resumen -->
+        <div id="paso4" class="paso hidden">
+          <h3 class="mb-2">Revisá tu reserva</h3>
+          <div class="resumen-box" id="resumenReserva"></div>
+          <p class="muted small mt-2">Al confirmar recibirás un correo/SMS con los detalles y un recordatorio 24 horas antes de la cita.</p>
+        </div>
+
+        <!-- Éxito -->
+        <div id="pasoExito" class="paso hidden">
+          <div class="success-box">
+            <div class="check">✓</div>
+            <h2>¡Cita reservada!</h2>
+            <p class="muted" id="textoExito"></p>
+            <div class="flex mt-4" style="justify-content:center">
+              <button class="btn btn-outline" id="btnVerMisCitas" type="button">Ver mis citas</button>
+              <button class="btn btn-gold" id="btnOtraReserva" type="button">Hacer otra reserva</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav" id="wizardNav">
+          <button class="btn btn-ghost" id="btnAtras" type="button">← Atrás</button>
+          <button class="btn btn-gold" id="btnSiguiente" type="button" disabled>Siguiente →</button>
+        </div>
+      </section>
+
+      <!-- ================= MIS CITAS ================= -->
+      <section id="vistaMisCitas" class="hidden">
+        <h1 class="section-title">Mis citas</h1>
+        <p class="muted mb-3">Podés reprogramar o cancelar mientras la cita siga activa. Al cancelar, el espacio queda libre para otra persona.</p>
+        <h3 class="mb-2">Próximas</h3>
+        <div class="citas-list mb-3" id="listaProximas"></div>
+        <h3 class="mb-2">Historial</h3>
+        <div class="citas-list" id="listaHistorial"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/reservas.js"></script>
+</body>
+</html>
