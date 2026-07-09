@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración | Smart-Barber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-palette="#ab8a2a">
+
+  <div class="admin-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="logo-icon">✂</span> SMART<em>BARBER</em></a>
+      <button class="side-link active" data-seccion="dashboard" type="button"><span class="icon">📊</span> Dashboard</button>
+      <button class="side-link" data-seccion="reservas" type="button"><span class="icon">📅</span> Reservas</button>
+      <button class="side-link" data-seccion="servicios" type="button"><span class="icon">✂️</span> Servicios</button>
+      <button class="side-link" data-seccion="barberos" type="button"><span class="icon">💈</span> Barberos</button>
+      <button class="side-link" data-seccion="horarios" type="button"><span class="icon">🕐</span> Horarios</button>
+      <button class="side-link" data-seccion="clientes" type="button"><span class="icon">👥</span> Clientes</button>
+      <button class="side-link" data-seccion="reportes" type="button"><span class="icon">📈</span> Reportes</button>
+      <div class="spacer"></div>
+      <div class="side-footer">
+        <button class="side-link" onclick="Auth.salir()" type="button"><span class="icon">🚪</span> Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- ================= CONTENIDO ================= -->
+    <main class="admin-main">
+
+      <!-- ===== DASHBOARD ===== -->
+      <section id="sec-dashboard" class="seccion">
+        <div class="admin-header">
+          <div>
+            <h1>Dashboard</h1>
+            <p class="muted small" id="fechaHoy"></p>
+          </div>
+          <span class="badge badge-confirmada" id="saludoAdmin"></span>
+        </div>
+
+        <div class="kpi-grid" id="kpisHoy"></div>
+
+        <div class="card">
+          <div class="flex-between mb-2">
+            <h3>👥 Clientes de hoy</h3>
+            <span class="muted small">Agenda del día ordenada por hora</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Hora</th><th>Cliente</th><th>Teléfono</th><th>Servicio</th><th>Barbero</th><th>Estado</th><th>Acciones</th></tr>
+              </thead>
+              <tbody id="tablaHoy"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== RESERVAS ===== -->
+      <section id="sec-reservas" class="seccion hidden">
+        <div class="admin-header"><h1>Reservas</h1></div>
+        <div class="filters-bar">
+          <input class="form-control" type="date" id="filtroFecha">
+          <select class="form-control" id="filtroEstado">
+            <option value="">Todos los estados</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="completada">Completada</option>
+            <option value="cancelada">Cancelada</option>
+            <option value="no-show">No asistió</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" id="btnLimpiarFiltros" type="button">Limpiar filtros</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="tablaReservas"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== SERVICIOS ===== -->
+      <section id="sec-servicios" class="seccion hidden">
+        <div class="admin-header">
+          <h1>Catálogo de servicios</h1>
+          <button class="btn btn-gold" id="btnNuevoServicio" type="button">+ Nuevo servicio</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Servicio</th><th>Duración</th><th>Precio</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="tablaServicios"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== BARBEROS ===== -->
+      <section id="sec-barberos" class="seccion hidden">
+        <div class="admin-header">
+          <h1>Personal</h1>
+          <button class="btn btn-gold" id="btnNuevoBarbero" type="button">+ Nuevo barbero</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Nombre</th><th>Especialidad</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="tablaBarberos"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== HORARIOS ===== -->
+      <section id="sec-horarios" class="seccion hidden">
+        <div class="admin-header"><h1>Horarios y bloqueos</h1></div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start;">
+          <div class="card">
+            <h3 class="mb-2">🕐 Horario de atención</h3>
+            <form id="formHorario">
+              <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="form-group">
+                  <label for="cfgApertura">Apertura</label>
+                  <input class="form-control" type="time" id="cfgApertura" required>
+                </div>
+                <div class="form-group">
+                  <label for="cfgCierre">Cierre</label>
+                  <input class="form-control" type="time" id="cfgCierre" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cfgIntervalo">Intervalo entre turnos</label>
+                <select class="form-control" id="cfgIntervalo">
+                  <option value="15">15 minutos</option>
+                  <option value="30">30 minutos</option>
+                  <option value="60">60 minutos</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Días laborales</label>
+                <div class="days-grid" id="gridDias"></div>
+              </div>
+              <button class="btn btn-gold" type="submit">Guardar horario</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3 class="mb-2">🚫 Días bloqueados (feriados / vacaciones)</h3>
+            <p class="muted small mb-2">Los clientes no podrán reservar en estas fechas.</p>
+            <form class="flex" id="formBloqueo">
+              <input class="form-control" type="date" id="nuevaFechaBloqueo" required>
+              <button class="btn btn-outline" type="submit">Bloquear</button>
+            </form>
+            <div class="mt-2" id="listaBloqueos"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CLIENTES ===== -->
+      <section id="sec-clientes" class="seccion hidden">
+        <div class="admin-header"><h1>Historial de clientes</h1></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Cliente</th><th>Contacto</th><th>Visitas</th><th>Última visita</th><th>No-shows</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="tablaClientes"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== REPORTES ===== -->
+      <section id="sec-reportes" class="seccion hidden">
+        <div class="admin-header">
+          <div>
+            <h1>Reportes</h1>
+            <p class="muted small">Últimos 30 días</p>
+          </div>
+        </div>
+        <div class="kpi-grid" id="kpisMes"></div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Servicios más solicitados</h3>
+            <p class="chart-sub">Citas por servicio (excluye canceladas)</p>
+            <div class="bar-chart" id="chartServicios"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Horas pico de demanda</h3>
+            <p class="chart-sub">Citas por hora de inicio</p>
+            <div class="vbar-chart" id="chartHoras"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Ocupación por día de la semana</h3>
+            <p class="chart-sub">Promedio de citas por día laboral</p>
+            <div class="bar-chart" id="chartDias"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Detalle en tabla</h3>
+            <p class="chart-sub">Los mismos datos de los gráficos, en texto</p>
+            <div class="table-wrap">
+              <table class="data-table" style="min-width: 0;">
+                <thead><tr><th>Indicador</th><th>Valor</th></tr></thead>
+                <tbody id="tablaResumenReportes"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
