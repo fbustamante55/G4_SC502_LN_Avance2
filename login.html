@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Smart-Barber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <a class="brand" href="index.html" style="justify-content:center">
+        <span class="logo-icon">✂</span> SMART<em>BARBER</em>
+      </a>
+
+      <div class="auth-tabs">
+        <button id="tabLogin" class="active" type="button">Iniciar sesión</button>
+        <button id="tabRegistro" type="button">Crear cuenta</button>
+      </div>
+
+      <!-- ============ FORMULARIO LOGIN ============ -->
+      <form id="formLogin" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Correo electrónico</label>
+          <input class="form-control" type="email" id="loginEmail" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPass">Contraseña</label>
+          <input class="form-control" type="password" id="loginPass" placeholder="••••••••" required>
+        </div>
+        <p class="form-error" id="errorLogin"></p>
+        <button class="btn btn-gold btn-block mt-2" type="submit">Ingresar</button>
+
+        <div class="demo-creds">
+          <b>Cuentas de demostración</b><br>
+          Admin: <code>admin@smartbarber.cr</code> / <code>admin123</code><br>
+          Cliente: <code>cliente@demo.com</code> / <code>cliente123</code>
+        </div>
+      </form>
+
+      <!-- ============ FORMULARIO REGISTRO ============ -->
+      <form id="formRegistro" class="hidden" novalidate>
+        <div class="form-group">
+          <label for="regNombre">Nombre completo</label>
+          <input class="form-control" type="text" id="regNombre" placeholder="Ej: Juan Pérez Mora" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Correo electrónico</label>
+          <input class="form-control" type="email" id="regEmail" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label for="regTel">Teléfono</label>
+          <input class="form-control" type="tel" id="regTel" placeholder="8888-8888" required>
+        </div>
+        <div class="form-group">
+          <label for="regPass">Contraseña</label>
+          <input class="form-control" type="password" id="regPass" placeholder="Mínimo 6 caracteres" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="regPass2">Confirmar contraseña</label>
+          <input class="form-control" type="password" id="regPass2" placeholder="Repetí la contraseña" required>
+        </div>
+        <p class="form-error" id="errorRegistro"></p>
+        <button class="btn btn-gold btn-block mt-2" type="submit">Crear cuenta</button>
+      </form>
+
+      <p class="text-center small muted mt-3"><a href="index.html">← Volver al inicio</a></p>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>
